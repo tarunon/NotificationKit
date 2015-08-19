@@ -9,10 +9,12 @@
 import XCTest
 @testable import NotificationKit
 
-class SampleNotification: NotificationType {
-    typealias ObjectType = NSObject
-    typealias ValueType = String
-    let core = NotificationCore<NSObject, String>("SampleNotification")
+class SampleNotification: Notification<NSObject, String> {
+    override var name: String {
+        get {
+            return "SampleNotification"
+        }
+    }
 }
 
 class NotificationKitTests: XCTestCase {
