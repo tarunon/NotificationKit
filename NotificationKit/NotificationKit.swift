@@ -17,19 +17,22 @@ private class Box<T> {
 
 private let keyName = "NotificationUserInfoKey"
 
-public final class NotificationCore<O: AnyObject, V> {
-    
-    let name: String
-    private var observers = Set<Observer>()
-    public init(_ name: String) {
-        self.name = name
+public class Notification<O: AnyObject, V> {
+    public var name: String {
+        get {
+            return ""
+        }
     }
     
-    private func postNotification(object: O?, value: V) {
+    private var observers = Set<Observer>()
+    
+    public init() {}
+    
+    public func postNotification(object: O?, value: V) {
         NSNotificationCenter.defaultCenter().postNotificationName(name, object: object, userInfo: [keyName: Box(value)])
     }
     
-    private func addObserver(object: O?, queue: NSOperationQueue?, handler: (O?, V) -> ()) -> Observer {
+    public func addObserver(object: O?, queue: NSOperationQueue?, handler: (O?, V) -> ()) -> Observer {
         let observer = Observer(NSNotificationCenter.defaultCenter().addObserverForName(name, object: object, queue: queue) { notification in
             handler(notification.object as? O, (notification.userInfo?[keyName] as! Box<V>).value)
         })
@@ -37,7 +40,7 @@ public final class NotificationCore<O: AnyObject, V> {
         return observer
     }
     
-    private func removeObserver(observer: Observer) {
+    public func removeObserver(observer: Observer) {
         observers.remove(observer)
     }
 }
@@ -60,26 +63,4 @@ public final class Observer: Hashable {
 
 public func ==(lhs: Observer, rhs: Observer) -> Bool {
     return lhs.value === rhs.value
-}
-
-protocol NotificationType {
-    
-    typealias ObjectType: AnyObject
-    typealias ValueType
-    var core: NotificationCore<ObjectType, ValueType> { get }
-}
-
-extension NotificationType {
-    
-    func postNotification(object: ObjectType?, value: ValueType) {
-        core.postNotification(object, value: value)
-    }
-    
-    func addObserver(object: ObjectType?, queue: NSOperationQueue?, handler: (ObjectType?, ValueType) -> ()) -> Observer {
-        return core.addObserver(object, queue: queue, handler: handler)
-    }
-    
-    func removeObserver(observer: Observer) {
-        core.removeObserver(observer)
-    }
 }

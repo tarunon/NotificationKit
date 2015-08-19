@@ -4,10 +4,12 @@ A simple type-safe NSNotificationCenter library
 ## Usage
 Create class extend NotificationType and defined typealias, and initialize core object.
 ```swift
-class SampleNotification: NotificationType {
-    typealias ObjectType = NSObject
-    typealias ValueType = String
-    let core = NotificationCore<NSObject, String>("SampleNotification")
+class SampleNotification: Notification<NSObject, String> {
+    override var name: String {
+        get {
+            return "SampleNotification"
+        }
+    }
 }
 ```
 
@@ -23,16 +25,20 @@ notification.removeObserver(observer)
 
 Of course, ValueType accept out of NSObject subclass types.
 ```swift
-class TupleNotification: NotificationType {
-    typealias ObjectType = NSObject
-    typealias ValueType = (String, Int)
-    let core = NotificationCore<NSObject, (String, Int)>("TupleNotification")
+class TupleNotification: Notification<NSObject, (String, Int)> {
+    override var name: String {
+        get {
+            return "SampleNotification"
+        }
+    }
 }
 
-class EnumNotification: NotificationType {
-    typealias ObjectType = NSObject
-    typealias ValueType = Optional<String>
-    let core = NotificationCore<NSObject, Optional<String>>("EnumNotification")
+class EnumNotification: Notification<NSObject, Optional<String>> {
+    override var name: String {
+        get {
+            return "SampleNotification"
+        }
+    }
 }
 ```
 
