@@ -1,6 +1,22 @@
 # NotificationKit
 A simple type-safe NSNotificationCenter library
 
+## Installation
+
+### CocoaPods
+```ruby
+platform :ios, "8.0"
+use_frameworks!
+
+pod 'NotificationKit', :git => 'https://github.com/tarunon/NotificationKit.git', :branch => 'master'
+```
+
+### Carthage
+```ogdl
+github "tarunon/NotificationKit"
+```
+
+
 ## Usage
 Create class extend NotificationType and defined typealias, and initialize core object.
 ```swift
