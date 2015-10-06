@@ -19,9 +19,7 @@ private let keyName = "NotificationUserInfoKey"
 
 public class Notification<O: AnyObject, V> {
     public var name: String {
-        get {
-            return ""
-        }
+        return ""
     }
     
     private var observers = Set<Observer>()
@@ -29,12 +27,38 @@ public class Notification<O: AnyObject, V> {
     public init() {}
     
     public func postNotification(object: O?, value: V) {
-        NSNotificationCenter.defaultCenter().postNotificationName(name, object: object, userInfo: [keyName: Box(value)])
+        NSNotificationCenter.defaultCenter().postNotificationName(name, object: object, userInfo: [keyName: NotificationBox(value)])
     }
     
     public func addObserver(object: O?, queue: NSOperationQueue?, handler: (O?, V) -> ()) -> Observer {
         let observer = Observer(NSNotificationCenter.defaultCenter().addObserverForName(name, object: object, queue: queue) { notification in
-            handler(notification.object as? O, (notification.userInfo?[keyName] as! Box<V>).value)
+            handler(notification.object as? O, (notification.userInfo?[keyName] as! NotificationBox<V>).value)
+        })
+        observers.insert(observer)
+        return observer
+    }
+    
+    public func removeObserver(observer: Observer) {
+        observers.remove(observer)
+    }
+}
+
+public class SimpleNotification<V> {
+    public var name: String {
+        return ""
+    }
+    
+    private var observers = Set<Observer>()
+    
+    public init() {}
+    
+    public func postNotification(value: V) {
+        NSNotificationCenter.defaultCenter().postNotificationName(name, object: nil, userInfo: [keyName: NotificationBox(value)])
+    }
+    
+    public func addObserver(queue: NSOperationQueue?, handler: V -> ()) -> Observer {
+        let observer = Observer(NSNotificationCenter.defaultCenter().addObserverForName(name, object: nil, queue: queue) { notification in
+            handler((notification.userInfo?[keyName] as! NotificationBox<V>).value)
         })
         observers.insert(observer)
         return observer

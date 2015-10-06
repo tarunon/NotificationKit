@@ -11,9 +11,13 @@ import XCTest
 
 class SampleNotification: Notification<NSObject, String> {
     override var name: String {
-        get {
-            return "SampleNotification"
-        }
+        return "SampleNotification"
+    }
+}
+
+class SampleNotification2: SimpleNotification<Int> {
+    override var name: String {
+        return "SampleNotification2"
     }
 }
 
@@ -45,6 +49,17 @@ class NotificationKitTests: XCTestCase {
         sampleNotification.postNotification(nil, value: "It is not observed at \(observer)")
     }
     
+    func testPostNotification2() {
+        let sampleNotification = SampleNotification2()
+        let notificationValue = 1984
+        
+        sampleNotification.addObserver(nil) { value in
+            XCTAssertEqual(value, notificationValue)
+        }
+        
+        sampleNotification.postNotification(notificationValue)
+    }
+    
     func testRemoveNotification() {
         var sampleNotification: SampleNotification!
         
@@ -59,5 +74,21 @@ class NotificationKitTests: XCTestCase {
         }
         
         sampleNotification.postNotification(nil, value: "It is not observed.")
+    }
+    
+    func testRemoveNotification2() {
+        var sampleNotification: SampleNotification2!
+        
+        autoreleasepool {
+            sampleNotification = SampleNotification2()
+            
+            let observer = sampleNotification.addObserver(nil, handler: { value in
+                XCTFail()
+            })
+            
+            sampleNotification.removeObserver(observer)
+        }
+        
+        sampleNotification.postNotification(1984)
     }
 }
