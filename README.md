@@ -41,9 +41,7 @@ Of course, ValueType accept out of NSObject subclass types.
 ```swift
 class TupleNotification: Notification<NSObject, (String, Int)> {
     override var name: String {
-        get {
-            return "SampleNotification"
-        }
+        return "SampleNotification"
     }
 }
 
