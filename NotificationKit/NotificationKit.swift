@@ -8,7 +8,7 @@
 
 import Foundation
 
-private class Box<T> {
+private class NotificationBox<T> {
     let value: T
     init(_ value: T) {
         self.value = value
