@@ -22,9 +22,7 @@ Create class extend NotificationType and defined typealias, and initialize core 
 ```swift
 class SampleNotification: Notification<NSObject, String> {
     override var name: String {
-        get {
-            return "SampleNotification"
-        }
+        return "SampleNotification"
     }
 }
 ```
@@ -51,9 +49,17 @@ class TupleNotification: Notification<NSObject, (String, Int)> {
 
 class EnumNotification: Notification<NSObject, Optional<String>> {
     override var name: String {
-        get {
-            return "SampleNotification"
-        }
+        return "SampleNotification"
+    }
+}
+```
+
+If you don't need Object filter, you use SimpleNotification class instead of Notification class.
+
+```swift
+class Notification: SimpleNotification<Int> {
+    override var name: String {
+        return "Notification"
     }
 }
 ```
