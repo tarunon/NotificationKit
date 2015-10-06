@@ -11,6 +11,7 @@
 		EB2082931B7091B8003EF5E9 /* NotificationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB2082881B7091B8003EF5E9 /* NotificationKit.framework */; };
 		EB2082981B7091B8003EF5E9 /* NotificationKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2082971B7091B8003EF5E9 /* NotificationKitTests.swift */; };
 		EB2082A31B7091C2003EF5E9 /* NotificationKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2082A21B7091C2003EF5E9 /* NotificationKit.swift */; };
+		EBEDC1A21BC35C96002684F9 /* NotificationKit.podspec in Resources */ = {isa = PBXBuildFile; fileRef = EBEDC1A11BC35C96002684F9 /* NotificationKit.podspec */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +32,7 @@
 		EB2082971B7091B8003EF5E9 /* NotificationKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationKitTests.swift; sourceTree = "<group>"; };
 		EB2082991B7091B8003EF5E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB2082A21B7091C2003EF5E9 /* NotificationKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationKit.swift; sourceTree = "<group>"; };
+		EBEDC1A11BC35C96002684F9 /* NotificationKit.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NotificationKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 				EB20828A1B7091B8003EF5E9 /* NotificationKit */,
 				EB2082961B7091B8003EF5E9 /* NotificationKitTests */,
 				EB2082891B7091B8003EF5E9 /* Products */,
+				EBEDC1A01BC35C75002684F9 /* Supporting Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -87,6 +90,14 @@
 				EB2082991B7091B8003EF5E9 /* Info.plist */,
 			);
 			path = NotificationKitTests;
+			sourceTree = "<group>";
+		};
+		EBEDC1A01BC35C75002684F9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EBEDC1A11BC35C96002684F9 /* NotificationKit.podspec */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,6 +191,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBEDC1A21BC35C96002684F9 /* NotificationKit.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +395,7 @@
 				EB20829E1B7091B9003EF5E9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EB20829F1B7091B9003EF5E9 /* Build configuration list for PBXNativeTarget "NotificationKitTests" */ = {
 			isa = XCConfigurationList;
@@ -391,6 +404,7 @@
 				EB2082A11B7091B9003EF5E9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
